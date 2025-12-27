@@ -1,4 +1,5 @@
 # IMO 2025 Problem Solver
+
 An AI agent system for solving International Mathematical Olympiad (IMO) problems using Google's Gemini, OpenAI, and XAI APIs.
 
 ```
@@ -28,6 +29,7 @@ SOFTWARE.
 ## Overview
 
 This project consists of the following components:
+
 - `code/agent.py`: A single AI agent that attempts to solve IMO problems with default base model: Google Gemini 2.5 Pro
 - `code/agent_oai.py`: A single AI agent that uses OpenAI GPT-5 model (same CLI/usage as `agent.py`)
 - `code/agent_xai.py`: A single AI agent that uses XAI Grok-4-0709 models (same CLI/usage as `agent.py`)
@@ -48,10 +50,11 @@ These folders contain example successful run logs demonstrating end-to-end solut
 
 1. **Python 3.7+** installed on your system
 2. **API key(s) for your chosen provider(s)**:
-   - Google Gemini: https://aistudio.google.com/app/apikey
-   - OpenAI: https://platform.openai.com/api-keys
+   - Google Gemini: <https://aistudio.google.com/app/apikey>
+   - OpenAI: <https://platform.openai.com/api-keys>
    - XAI: Refer to your XAI account portal for API key issuance
 3. **Required Python packages**:
+
    ```bash
    pip install requests
    ```
@@ -76,16 +79,23 @@ python agent.py problem.txt [options]
 ```
 
 **Arguments:**
+
 - `problem.txt`: Path to the problem statement file (required); imo2025 problems are in `problems`
 
 **Options:**
+
 - `--log LOG_FILE`: Specify a log file for output (default: prints to console)
 - `--other_prompts PROMPTS`: Additional prompts separated by commas
 
 **Example:**
+
 ```bash
 python agent.py imo2025_p1.txt --log agent_output.log
 ```
+
+python code/agent.py problems/imo01.txt --log agent_output.log
+
+uv run code/agent.py problems/imo01.txt --log agent_output.log
 
 To run with OpenAI or XAI instead, simply invoke the corresponding script with the same options:
 
@@ -103,9 +113,11 @@ python IMO25/code/run_parallel.py <problem_file> [options]
 ```
 
 **Arguments:**
+
 - `problem.txt`: Path to the problem statement file (required). Use an absolute path or ensure the path is valid from within `IMO25/code/` (the script runs the agent with its working directory set to `IMO25/code/`).
 
 **Options:**
+
 - `--num-agents N` or `-n N`: Number of parallel agents (default: 10)
 - `--log-dir DIR` or `-d DIR`: Directory for log files (default: logs)
 - `--timeout SECONDS` or `-t SECONDS`: Timeout per agent in seconds (default: no timeout)
@@ -115,6 +127,7 @@ python IMO25/code/run_parallel.py <problem_file> [options]
 - `--exit-immediately` or `-e`: Exit the whole run as soon as any agent finds a correct solution (otherwise, all agents run to completion)
 
 **Examples:**
+
 ```bash
 # Run 20 agents with 5-minute timeout each
 python IMO25/code/run_parallel.py problems/imo2025_p1.txt -n 20 -t 300
@@ -139,21 +152,25 @@ python IMO25/code/res2md.py <result_file>
 ```
 
 **Example:**
+
 ```bash
 python IMO25/code/res2md.py logs/results.jsonl
 ```
 
 ## Problem File Format
+
 See the `problems` folder.
 
 ## Output and Logging
 
 ### Single Agent
+
 - Output is printed to console by default
 - Use `--log` to save output to a file
 - The agent will indicate if a complete solution was found
 
 ### Parallel Execution
+
 - Each agent creates a separate log file in the specified directory
 - Progress is shown in real-time
 - Final summary shows:
@@ -167,9 +184,11 @@ See the `problems` folder.
 ## Understanding the Output
 
 ### Solution Detection
+
 The system looks for the phrase "Found a correct solution in run" to identify successful solutions.
 
 ### Agent Behavior
+
 - Agents can use Google's Gemini 2.5 Pro, OpenAI, or XAI models depending on the chosen script
 - Each agent follows a structured approach with multiple attempts
 - Solutions are verified for completeness and correctness
@@ -193,9 +212,10 @@ The system looks for the phrase "Found a correct solution in run" to identify su
 4. **No Solutions Found**: Try running more agents or check problem clarity
 
 ### Debug Mode
+
 Add verbose logging by modifying the agent code or check individual log files for detailed output.
 
-## Changelog 
+## Changelog
 
 ### 08/18/2025
 
@@ -204,7 +224,7 @@ Add verbose logging by modifying the agent code or check individual log files fo
 - Parallel runs no longer exit by default when a solution is found; use `--exit-immediately` to stop at the first complete solution.
 - Adding running logs from grok-4 and gpt-5
 
-### 07/24/2025 
+### 07/24/2025
 
 - Initial code release
 
@@ -220,11 +240,11 @@ Feel free to submit issues, feature requests, or pull requests to improve the sy
 
 ### Community Codes
 
-Community contributions are located in `code/community_codes/`. These have not been thoroughly tested, so please use them at your own risk. 
+Community contributions are located in `code/community_codes/`. These have not been thoroughly tested, so please use them at your own risk.
 
 ## Disclaimer
 
-This tool is for educational and research purposes. 
+This tool is for educational and research purposes.
 
 ## Citation
 
@@ -237,4 +257,4 @@ If you use this code in your research, please cite:
   journal={arXiv preprint arXiv:2507.15855},
   year={2025}
 }
-``` 
+```
